@@ -1,34 +1,20 @@
-<!DOCTYPE html>
+<!doctype html> <!-- Important: must specify -->
 <html>
 
 <head>
-    <title>Langfuse API Reference</title>
-    <!-- needed for adaptive design -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
-
-    <!--
-        Redoc doesn't change outer page styles
-        -->
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    <meta charset="utf-8"> <!-- Important: rapi-doc uses utf8 characters -->
+    <meta name="description"
+        content="Comprehensive API reference for Langfuse services. Explore the HTTP API endpoints with detailed information on operations, parameters, and responses. You can also download the OpenAPI spec.">
+    <title>Langfuse API reference</title>
+    <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
 </head>
 
 <body>
-    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"> </script>
-    <div id="redoc-container"></div>
-
-    <script>
-        Redoc.init('https://cloud.langfuse.com/openapi-server.yml', {
-            "expandResponses": "200,207",
-            "schemaExpansionLevel": 100
-        }, document.getElementById('redoc-container'))
-    </script>
+    <rapi-doc spec-url="https://cloud.langfuse.com/openapi-server.yml" theme="light" layout="row" show-header="false"
+        allow-try="false" schema-style="table" allow-server-selection="false" allow-authentication="false"
+        render-style="read" schema-description-expanded="true" default-schema-tab="schema"
+        default-api-server="https://cloud.langfuse.com">
+    </rapi-doc>
 </body>
 
 </html>
