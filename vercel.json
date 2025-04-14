@@ -1,0 +1,5 @@
+{
+  "buildCommand": "find public -type f -name '*.html' -exec sed -i \"s|%APISPEC_DATA_URL%|$APISPEC_DATA_URL|g\" {} \\;",
+  "outputDirectory": "public",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

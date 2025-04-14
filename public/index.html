@@ -10,8 +10,12 @@
 </head>
 
 <body>
-    <script id="api-reference" data-url="https://cloud.langfuse.com/generated/api/openapi.yml"></script>
+    <script id="api-reference"></script>
     <script>
+        // Get the data-url from environment variable or use default
+        const apiUrl = '%APISPEC_DATA_URL%' !== '%APISPEC_DATA' + '_URL%' ? '%APISPEC_DATA_URL%' : 'https://cloud.langfuse.com/generated/api/openapi.yml';
+        document.getElementById('api-reference').setAttribute('data-url', apiUrl);
+
         var configuration = {
             theme: 'default',
             darkMode: true,
