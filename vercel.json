@@ -1,5 +1,5 @@
 {
-  "buildCommand": "find public -type f -name '*.html' -exec sed -i \"s|%APISPEC_DATA_URL%|$APISPEC_DATA_URL|g\" {} \\;",
+  "buildCommand": "[ -n \"$APISPEC_DATA_URL\" ] && find public -type f -name '*.html' -exec sed -i \"s|%APISPEC_DATA_URL%|$APISPEC_DATA_URL|g\" {} \\; || echo \"Skipping sed replacement, APISPEC_DATA_URL not set\"",
   "outputDirectory": "public",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }

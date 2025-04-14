@@ -2,7 +2,8 @@
 
 # Langfuse API Reference
 
-https://api.reference.langfuse.com
+- https://api.reference.langfuse.com
+- https://organizations-api.reference.langfuse.com
 
 ## Deployment
 
