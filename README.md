@@ -23,3 +23,10 @@ Example environment variable:
 ```
 APISPEC_DATA_URL=https://example.com/path/to/your/openapi.yml
 ```
+
+### Run locally
+
+```
+pnpm install
+pnpm run dev
+```
