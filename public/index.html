@@ -10,13 +10,20 @@
 </head>
 
 <body>
-    <script id="api-reference"></script>
+    <div id="app"></div>
+
+    <!-- Load the Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
+
+    <!-- Initialize the Scalar API Reference -->
     <script>
         // Get the data-url from environment variable or use default
         const apiUrl = '%APISPEC_DATA_URL%' !== '%APISPEC_DATA' + '_URL%' ? '%APISPEC_DATA_URL%' : 'https://cloud.langfuse.com/generated/api/openapi.yml';
-        document.getElementById('api-reference').setAttribute('data-url', apiUrl);
 
-        var configuration = {
+        Scalar.createApiReference('#app', {
+            // The URL of the OpenAPI/Swagger document
+            url: apiUrl,
+            // Configuration options
             theme: 'default',
             darkMode: true,
             hideModels: true,
@@ -42,12 +49,8 @@
                 },
             ],
             favicon: 'https://langfuse.com/favicon.ico',
-        }
-
-        document.getElementById('api-reference').dataset.configuration =
-            JSON.stringify(configuration)
+        })
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
 </body>
 
 </html>
