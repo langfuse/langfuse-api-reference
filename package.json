@@ -3,11 +3,7 @@
   "version": "1.0.0",
   "description": "Local development server for Langfuse API reference",
   "scripts": {
-    "dev": "live-server public --port=3001 --open",
-    "start": "pnpm run dev"
-  },
-  "devDependencies": {
-    "live-server": "^1.2.2"
+    "dev": "npx serve public -p 3001"
   },
   "packageManager": "pnpm@9.5.0+sha512.140036830124618d624a2187b50d04289d5a087f326c9edfc0ccd733d76c4f52c3a313d4fc148794a2a9d81553016004e6742e8cf850670268a7387fc220c903"
 }
