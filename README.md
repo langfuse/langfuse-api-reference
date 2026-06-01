@@ -1,4 +1,4 @@
-![GitHub Banner](https://github.com/langfuse/langfuse-api-reference/assets/2834609/8cb3c6ce-d62b-4dae-8e29-44e317a7abeb)
+<img width="2400" height="600" alt="hero-b" src="https://github.com/user-attachments/assets/54dab058-e884-461c-a17f-0cbf4eafa1a9" />
 
 # Langfuse API Reference
 
