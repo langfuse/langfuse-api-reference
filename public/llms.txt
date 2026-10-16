@@ -1,0 +1,28 @@
+# Langfuse API reference
+
+> Interactive reference for the Langfuse public HTTP API. The page renders with JavaScript; this file carries the same entry points as plain text.
+
+- OpenAPI spec (YAML): https://cloud.langfuse.com/generated/api/openapi.yml
+- Self-hosted deployments serve the spec at `/api/openapi.yaml`.
+- Public API docs: https://langfuse.com/docs/api-and-data-platform/features/public-api
+
+## Authentication
+
+HTTP Basic auth: the project's public key is the username, the secret key is the password.
+
+Base URLs: `https://cloud.langfuse.com` (EU), `https://us.cloud.langfuse.com` (US), `https://jp.cloud.langfuse.com` (JP), `https://hipaa.cloud.langfuse.com` (HIPAA), or your self-hosted URL.
+
+## Current endpoints for reading data
+
+- Traces, spans and generations: `GET /api/public/v2/observations`
+- Scores: `GET /api/public/v3/scores`
+- Aggregated metrics (cost, latency, counts): `GET /api/public/v2/metrics`
+- Prompts: `GET /api/public/v2/prompts`
+- Datasets: `GET /api/public/v2/datasets`
+- Ingest traces: `POST /api/public/otel/v1/traces` (OpenTelemetry)
+
+Deprecated, removed on Langfuse Cloud on November 16, 2026: `GET /api/public/traces`, `GET /api/public/observations`, `GET /api/public/sessions`, `GET /api/public/scores`, `GET /api/public/v2/scores`, `GET /api/public/metrics`. Migration guide: https://langfuse.com/faq/all/deprecated-api-migration
+
+## From a terminal or coding agent
+
+The Langfuse CLI wraps every endpoint: `npx @langfuse/cli api <resource> <action>`. Docs: https://langfuse.com/docs/api-and-data-platform/features/cli
