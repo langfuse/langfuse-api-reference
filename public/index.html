@@ -7,10 +7,46 @@
         content="Comprehensive API reference for Langfuse services. Explore the HTTP API endpoints with detailed information on operations, parameters, and responses. You can also download the OpenAPI spec.">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="alternate" type="application/yaml" title="OpenAPI spec"
+        href="https://cloud.langfuse.com/generated/api/openapi.yml" />
+    <link rel="alternate" type="text/plain" title="LLM-readable summary" href="/llms.txt" />
 </head>
 
 <body>
-    <div id="app"></div>
+    <!-- Plain-HTML summary for clients that do not run JavaScript (crawlers,
+         coding agents). Scalar replaces the contents of #app when it renders. -->
+    <div id="app">
+        <main>
+            <h1>Langfuse API reference</h1>
+            <p>The interactive reference on this page needs JavaScript. The full API is described by the
+                OpenAPI spec:
+                <a href="https://cloud.langfuse.com/generated/api/openapi.yml">https://cloud.langfuse.com/generated/api/openapi.yml</a>.
+                Self-hosted deployments serve it at <code>/api/openapi.yaml</code>.</p>
+            <h2>Authentication</h2>
+            <p>HTTP Basic auth with the project's public key as username and secret key as password.
+                Base URLs: <code>https://cloud.langfuse.com</code> (EU), <code>https://us.cloud.langfuse.com</code> (US),
+                <code>https://jp.cloud.langfuse.com</code> (JP), <code>https://hipaa.cloud.langfuse.com</code> (HIPAA),
+                or your self-hosted URL.</p>
+            <h2>Current endpoints for reading data</h2>
+            <ul>
+                <li>Traces, spans and generations: <code>GET /api/public/v2/observations</code></li>
+                <li>Scores: <code>GET /api/public/v3/scores</code></li>
+                <li>Aggregated metrics (cost, latency, counts): <code>GET /api/public/v2/metrics</code></li>
+                <li>Prompts: <code>GET /api/public/v2/prompts</code></li>
+                <li>Datasets: <code>GET /api/public/v2/datasets</code></li>
+                <li>Ingest traces: <code>POST /api/public/otel/v1/traces</code> (OpenTelemetry)</li>
+            </ul>
+            <p>Deprecated, removed on Langfuse Cloud on November 16, 2026: <code>GET /api/public/traces</code>,
+                <code>GET /api/public/observations</code>, <code>GET /api/public/sessions</code>,
+                <code>GET /api/public/scores</code>, <code>GET /api/public/v2/scores</code>,
+                <code>GET /api/public/metrics</code>. See the
+                <a href="https://langfuse.com/faq/all/deprecated-api-migration">migration guide</a>.</p>
+            <h2>From a terminal or coding agent</h2>
+            <p>The Langfuse CLI wraps every endpoint: <code>npx @langfuse/cli api &lt;resource&gt; &lt;action&gt;</code>.
+                See the <a href="https://langfuse.com/docs/api-and-data-platform/features/cli">CLI docs</a> and the
+                <a href="https://langfuse.com/docs/api-and-data-platform/features/public-api">public API docs</a>.</p>
+        </main>
+    </div>
 
     <!-- Load the Script -->
     <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
