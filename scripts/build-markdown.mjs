@@ -62,13 +62,28 @@ function fieldLines(schema, indent) {
   );
 }
 
+// Name a union variant: its title, its $ref, the $ref inside its allOf, or
+// the single-value enum (discriminator) among its fields.
+function variantName(variant, index) {
+  const resolved = resolve(variant);
+  if (resolved?.title) return resolved.title;
+  if (variant.$ref) return refName(variant.$ref);
+  const ref = (resolved?.allOf ?? []).find((part) => part.$ref);
+  if (ref) return refName(ref.$ref);
+  for (const [name, prop] of Object.entries(collectFields(variant).props)) {
+    if (prop.enum?.length === 1)
+      return `${name}: ${JSON.stringify(prop.enum[0])}`;
+  }
+  return `variant ${index + 1}`;
+}
+
 // List a body's fields; for a oneOf/anyOf body, list each variant's fields.
 function propertyLines(schema) {
   const resolved = resolve(schema);
   const variants = resolved?.oneOf ?? resolved?.anyOf;
   if (!variants) return fieldLines(schema, "  ");
-  return variants.flatMap((variant) => [
-    `  - One of: ${resolve(variant)?.title ?? typeOf(variant)}`,
+  return variants.flatMap((variant, index) => [
+    `  - One of: ${variantName(variant, index)}`,
     ...fieldLines(variant, "    "),
   ]);
 }
