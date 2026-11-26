@@ -6,11 +6,18 @@
     <meta name="description"
         content="Comprehensive API reference for Langfuse services. Explore the HTTP API endpoints with detailed information on operations, parameters, and responses. You can also download the OpenAPI spec.">
     <meta charset="utf-8" />
+    <link rel="alternate" type="text/markdown" href="/index.md" />
+    <link rel="describedby" type="application/yaml" href="/openapi.yml" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
     <div id="app"></div>
+    <noscript>
+        <p>This reference needs JavaScript. Without it, read the
+            <a href="/index.md">Markdown version</a> or download the
+            <a href="/openapi.yml">OpenAPI spec</a>.</p>
+    </noscript>
 
     <!-- Load the Script -->
     <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
@@ -37,6 +44,10 @@
                 {
                     url: 'https://us.cloud.langfuse.com',
                     description: 'Langfuse Cloud (US data region)',
+                },
+                {
+                    url: 'https://jp.cloud.langfuse.com',
+                    description: 'Langfuse Cloud (Japan data region)',
                 },
                 {
                     url: 'https://hipaa.cloud.langfuse.com',
