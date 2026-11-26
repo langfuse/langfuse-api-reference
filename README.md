@@ -27,5 +27,6 @@ APISPEC_DATA_URL=https://example.com/path/to/your/openapi.yml
 ### Run locally
 
 ```
+npm install
 npm run dev
 ```
