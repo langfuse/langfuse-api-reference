@@ -36,19 +36,41 @@ function typeOf(node) {
 
 const oneLine = (text = "") => text.replace(/\s*\n\s*/g, " ").trim();
 
-function propertyLines(schema) {
+// Merge properties and required fields across allOf parts, at any depth.
+function collectFields(schema, seen = new Set()) {
   const resolved = resolve(schema);
-  const props = { ...(resolved?.properties ?? {}) };
-  for (const part of resolved?.allOf ?? []) {
-    Object.assign(props, resolve(part)?.properties ?? {});
+  if (!resolved || seen.has(resolved)) return { props: {}, required: [] };
+  seen.add(resolved);
+  const props = { ...(resolved.properties ?? {}) };
+  const required = [...(resolved.required ?? [])];
+  for (const part of resolved.allOf ?? []) {
+    const nested = collectFields(part, seen);
+    Object.assign(props, nested.props);
+    required.push(...nested.required);
   }
-  const required = new Set(resolved?.required ?? []);
+  return { props, required };
+}
+
+function fieldLines(schema, indent) {
+  const { props, required } = collectFields(schema);
+  const isRequired = new Set(required);
   return Object.entries(props).map(
     ([name, prop]) =>
-      `  - \`${name}\` (${typeOf(prop)}${required.has(name) ? ", required" : ""})${
+      `${indent}- \`${name}\` (${typeOf(prop)}${isRequired.has(name) ? ", required" : ""})${
         prop.description ? `: ${oneLine(prop.description)}` : ""
       }`,
   );
+}
+
+// List a body's fields; for a oneOf/anyOf body, list each variant's fields.
+function propertyLines(schema) {
+  const resolved = resolve(schema);
+  const variants = resolved?.oneOf ?? resolved?.anyOf;
+  if (!variants) return fieldLines(schema, "  ");
+  return variants.flatMap((variant) => [
+    `  - One of: ${resolve(variant)?.title ?? typeOf(variant)}`,
+    ...fieldLines(variant, "    "),
+  ]);
 }
 
 const lines = [];
